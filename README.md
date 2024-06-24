@@ -33,22 +33,22 @@ To run this notebook, you will need the following:
 
 1. **Clone the repository:**
    
-  ```bash
+  ```
   git clone [https://github.com/KarinBrisker/winnie-the-pooh-rag.git](https://github.com/KarinBrisker/winnie-the-pooh-rag.git)
   cd winnie-the-pooh-rag
   ```
 
 3. **Install the required libraries:**
-```bash
-  pip install transformers torch datasets faiss-cpu
-  ```
+   ```
+   pip install transformers torch datasets faiss-cpu
+   ```
 
 4. **Launch Jupyter Notebook:**
    ```bash
-  jupyter notebook
-  ```
+   jupyter notebook
+   ```
 
-5. **Open the `Winnie_the_Pooh_RAG_task.ipynb` notebook in Jupyter.**
+6. **Open the `Winnie_the_Pooh_RAG_task.ipynb` notebook in Jupyter.**
 
 ## Usage
 
