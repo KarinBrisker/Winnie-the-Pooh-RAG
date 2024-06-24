@@ -33,9 +33,9 @@ To run this notebook, you will need the following:
 
 1. **Clone the repository:**
    
-  ```
-  git clone [https://github.com/KarinBrisker/winnie-the-pooh-rag.git](https://github.com/KarinBrisker/winnie-the-pooh-rag.git)
-  cd winnie-the-pooh-rag
+  ```bash
+  git clone [https://github.com/KarinBrisker/winnie-the-pooh-rag.git](https://github.com/KarinBrisker/winnie-the-pooh-rag.git)
+  cd winnie-the-pooh-rag
   ```
 
 3. **Install the required libraries:**
