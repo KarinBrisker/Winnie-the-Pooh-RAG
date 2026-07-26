@@ -1,77 +1,100 @@
-# Winnie the Pooh Retrieval-Augmented Generation (RAG) Task
+# Winnie-the-Pooh RAG
 
-This repository contains the `Winnie_the_Pooh_RAG_task.ipynb` notebook, which demonstrates a Retrieval-Augmented Generation (RAG) approach using the classic "Winnie the Pooh" text as the base dataset. The notebook illustrates how to combine retrieval and generation techniques to enhance the performance of natural language processing tasks.
+A compact Retrieval-Augmented Generation experiment built around the text of *Winnie-the-Pooh*. The repository demonstrates the core stages of a RAG pipeline: document preparation, chunking, embedding, retrieval, prompt construction, generation, and qualitative evaluation.
 
-## Table of Contents
+## Purpose
 
-1. [Introduction](#introduction)
-2. [Requirements](#requirements)
-3. [Setup](#setup)
-4. [Usage](#usage)
-5. [Notebook Structure](#notebook-structure)
-6. [Results](#results)
-7. [Contributing](#contributing)
-8. [License](#license)
+The project is intended as an inspectable learning artifact for understanding how retrieved evidence can improve language-model responses over a bounded corpus.
 
-## Introduction
+Rather than treating RAG as a single model call, the notebook exposes the individual system components and the assumptions behind them.
 
-The goal of this notebook is to showcase the integration of retrieval mechanisms with generative models. By leveraging the text from "Winnie the Pooh," we aim to enhance the generative capabilities through retrieval-based techniques, providing more accurate and contextually relevant outputs.
+## Pipeline
+
+```text
+Source text
+   ↓
+Cleaning and chunking
+   ↓
+Embedding generation
+   ↓
+Vector index
+   ↓
+Query retrieval
+   ↓
+Context assembly
+   ↓
+Grounded answer generation
+```
+
+## What the notebook covers
+
+- Loading and preprocessing a source corpus
+- Splitting text into retrievable chunks
+- Producing vector representations
+- Building a similarity-search index
+- Retrieving context for a user query
+- Passing retrieved evidence to a generative model
+- Inspecting answers and retrieval quality
+
+## Repository contents
+
+- `Winnie_the_Pooh_RAG_task.ipynb` — end-to-end experiment and explanation
 
 ## Requirements
 
-To run this notebook, you will need the following:
-
-- Python 3.8 or higher
-- Jupyter Notebook or Jupyter Lab
-- The following Python libraries:
- - `transformers`
- - `torch`
- - `datasets`
- - `faiss-cpu`
+- Python 3.8+
+- Jupyter Notebook or JupyterLab
+- `transformers`
+- `torch`
+- `datasets`
+- `faiss-cpu`
 
 ## Setup
 
-1. **Clone the repository:**
-   ```
-   git clone https://github.com/KarinBrisker/winnie-the-pooh-rag.git
-   cd winnie-the-pooh-rag
-   ```
+```bash
+git clone https://github.com/KarinBrisker/Winnie-the-Pooh-RAG.git
+cd Winnie-the-Pooh-RAG
+pip install transformers torch datasets faiss-cpu
+jupyter notebook
+```
 
-3. **Install the required libraries:**
-   ```
-   pip install transformers torch datasets faiss-cpu
-   ```
+Open `Winnie_the_Pooh_RAG_task.ipynb` and run the notebook cells in order.
 
-4. **Launch Jupyter Notebook:**
-   ```bash
-   jupyter notebook
-   ```
+## Design questions explored
 
-6. **Open the `Winnie_the_Pooh_RAG_task.ipynb` notebook in Jupyter.**
+- How should a narrative corpus be split into useful retrieval units?
+- What information is lost when chunks are too short or too long?
+- Does the retriever return evidence that actually supports the generated answer?
+- How should the system behave when the corpus does not contain the answer?
+- How much of answer quality comes from retrieval versus generation?
 
-## Usage
+## Evaluation perspective
 
-Follow the steps in the notebook to execute the RAG task. The notebook is structured with explanatory cells and code cells to guide you through the process.
+This repository currently emphasizes qualitative inspection. A stronger evaluation layer could add:
 
-## Notebook Structure
+- retrieval recall over a labeled question set,
+- answer groundedness,
+- citation or evidence correctness,
+- answerable versus unanswerable query behavior,
+- comparison of chunking strategies,
+- dense retrieval versus hybrid retrieval,
+- reranking ablations.
 
-The notebook is organized as follows:
+## Limitations
 
-1. **Introduction and Objectives:** Overview of the task and its objectives.
-2. **Data Preparation:** Loading and preprocessing the "Winnie the Pooh" text.
-3. **Model Setup:** Initializing and configuring the retrieval and generative models.
-4. **Training:** Training the combined RAG model.
-5. **Evaluation:** Evaluating the performance of the RAG model.
-6. **Results and Analysis:** Analyzing the results and discussing improvements.
+- The corpus is small and domain-bounded.
+- Results are sensitive to chunking, embedding choice, and model configuration.
+- Similarity does not guarantee that retrieved text supports the answer.
+- The notebook is an experiment, not a production-ready RAG service.
 
-## Results
+## Why it matters
 
-The notebook includes sections for visualizing and interpreting the results of the RAG task. Detailed explanations and code are provided to help understand the outcomes and the effectiveness of the retrieval-augmented approach.
+The useful lesson in a small RAG project is not only that retrieval can improve generation. It is that retrieval quality, context construction, and evaluation are separate engineering problems that must be measured independently in real systems.
 
 ## Contributing
 
-Contributions to improve this notebook are welcome. Please fork the repository and submit a pull request with your changes.
+Suggestions that improve the experiment, evaluation methodology, or reproducibility are welcome.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License.
